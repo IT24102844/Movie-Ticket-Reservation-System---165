@@ -7,19 +7,17 @@ public class Movie {
     private String title;
     private String genre;
     private LocalDate releaseDate;
-    private int duration; // in minutes
+    private int duration;
     private String imageName;
-    private double ticketPrice;
 
     public Movie() {}
 
-    public Movie(String title, String genre, LocalDate releaseDate, int duration, String imageName, double ticketPrice) {
+    public Movie(String title, String genre, LocalDate releaseDate, int duration, String imageName) {
         this.title = title;
         this.genre = genre;
         this.releaseDate = releaseDate;
         this.duration = duration;
         this.imageName = imageName;
-        this.ticketPrice = ticketPrice;
         this.movieId = title.substring(0, Math.min(title.length(), 6)).toUpperCase();
     }
 
@@ -37,8 +35,6 @@ public class Movie {
 
     public void setTitle(String title) {
         this.title = title;
-        // Update movieId when title changes
-        this.movieId = title.substring(0, Math.min(title.length(), 6)).toUpperCase();
     }
 
     public String getGenre() {
@@ -65,14 +61,6 @@ public class Movie {
         this.duration = duration;
     }
 
-    public double getTicketPrice() {
-        return ticketPrice;
-    }
-
-    public void setTicketPrice(double ticketPrice) {
-        this.ticketPrice = ticketPrice;
-    }
-
     public String getImageName() {
         return imageName;
     }
@@ -80,6 +68,4 @@ public class Movie {
     public void setImageName(String imageName) {
         this.imageName = imageName;
     }
-
-
 }
