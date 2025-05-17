@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Theatre</title>
+    <link rel="stylesheet" th:href="@{/css/globals.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <style>
+        /* Same styles as list.html */
+        .homepage {
+            background-color: rgba(255, 255, 255, 1.0);
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .homepage .div {
+            background-color: rgba(255, 255, 255, 1.0);
+            background: linear-gradient(117deg,
+            rgba(37, 37, 43, 0.95) 27%,
+            rgba(62, 61, 74, 1) 62%,
+            rgba(72, 72, 108, 1) 100%);
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .navbar {
+            position: absolute;
+            width: 1183px;
+            height: 38px;
+            top: 42px;
+            left: 133px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-title {
+            font-family: "Outfit-ExtraBold", Helvetica;
+            font-weight: 800;
+            color: #fff9f9;
+            font-size: 30px;
+            line-height: normal;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-button {
+            all: unset;
+            font-family: "Outfit-Light", Helvetica;
+            font-weight: 300;
+            font-size: 30px;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .nav-button.home {
+            color: #f8ce35;
+        }
+
+        .nav-button.logout {
+            color: #ffffff;
+        }
+
+        .nav-button:hover {
+            color: gold;
+        }
+
+        .content {
+            position: absolute;
+            width: 1183px;
+            top: 160px;
+            left: 133px;
+            color: white;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-family: "Outfit-Bold", Helvetica;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 28px;
+            letter-spacing: 2.80px;
+        }
+
+        .btn-add {
+            padding: 10px 20px;
+            background-color: #f8ce35;
+            color: #030303;
+            border-radius: 5px;
+            font-family: "Outfit-Light", Helvetica;
+            font-weight: 300;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-add:hover {
+            background-color: gold;
+            box-shadow: 0 0 20px rgba(253, 217, 106, 0.8);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #f8ce35;
+            font-family: "Outfit-Light", Helvetica;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background: #333;
+            color: white;
+            font-family: "Outfit-Light", Helvetica;
+        }
+
+        .btn-submit {
+            padding: 10px 20px;
+            background-color: #f8ce35;
+            color: #030303;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: "Outfit-Light", Helvetica;
+        }
+
+        .btn-submit:hover {
+            background-color: gold;
+            box-shadow: 0 0 20px rgba(253, 217, 106, 0.8);
+        }
+
+        .form-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 25px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="homepage">
+    <div class="div">
+        <div class="navbar">
+            <div class="navbar-title">ADD THEATRE</div>
+            <div class="nav-buttons">
+                <button class="nav-button home" onclick="window.location.href='/admin';">HOME</button>
+                <form th:action="@{/logout}" method="post" style="display: inline;">
+                    <button type="submit" class="nav-button logout">LOGOUT</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="header">
+                <h1 class="title">Add New Theatre</h1>
+                <a th:href="@{/theatres}" class="btn-add">Back to List</a>
+            </div>
+
+            <div class="form-container">
+                <form th:action="@{/theatres/add}" th:object="${theatre}" method="post">
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" th:field="*{name}" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Location</label>
+                        <input type="text" th:field="*{location}" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Seat Capacity</label>
+                        <input type="number" th:field="*{seatCapacity}" class="form-control" required min="1">
+                    </div>
+                    <button type="submit" class="btn-submit">Add Theatre</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
