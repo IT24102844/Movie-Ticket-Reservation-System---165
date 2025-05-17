@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Showtime Management</title>
+    <link rel="stylesheet" th:href="@{/css/globals.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <style>
+        /* Same styles as theatres/list.html */
+        .homepage {
+            background-color: rgba(255, 255, 255, 1.0);
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .homepage .div {
+            background-color: rgba(255, 255, 255, 1.0);
+            background: linear-gradient(117deg,
+            rgba(37, 37, 43, 0.95) 27%,
+            rgba(62, 61, 74, 1) 62%,
+            rgba(72, 72, 108, 1) 100%);
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .navbar {
+            position: absolute;
+            width: 1183px;
+            height: 38px;
+            top: 42px;
+            left: 133px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-title {
+            font-family: "Outfit-ExtraBold", Helvetica;
+            font-weight: 800;
+            color: #fff9f9;
+            font-size: 30px;
+            line-height: normal;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-button {
+            all: unset;
+            font-family: "Outfit-Light", Helvetica;
+            font-weight: 300;
+            font-size: 30px;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .nav-button.home {
+            color: #f8ce35;
+        }
+
+        .nav-button.logout {
+            color: #ffffff;
+        }
+
+        .nav-button:hover {
+            color: gold;
+        }
+
+        .content {
+            position: absolute;
+            width: 1183px;
+            top: 160px;
+            left: 133px;
+            color: white;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-family: "Outfit-Bold", Helvetica;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 28px;
+            letter-spacing: 2.80px;
+        }
+
+        .btn-add {
+            padding: 10px 20px;
+            background-color: #f8ce35;
+            color: #030303;
+            border-radius: 5px;
+            font-family: "Outfit-Light", Helvetica;
+            font-weight: 300;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-add:hover {
+            background-color: gold;
+            box-shadow: 0 0 20px rgba(253, 217, 106, 0.8);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+            font-family: "Outfit-Light", Helvetica;
+        }
+
+        th {
+            font-family: "Outfit-Bold", Helvetica;
+            color: #f8ce35;
+            font-size: 18px;
+        }
+
+        .action-btn {
+            padding: 5px 10px;
+            margin: 0 5px;
+            border-radius: 3px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-edit {
+            background-color: #f8ce35;
+            color: #030303;
+        }
+
+        .btn-delete {
+            background-color: #ff4d4d;
+            color: white;
+        }
+
+        .action-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+<div class="homepage">
+    <div class="div">
+        <div class="navbar">
+            <div class="navbar-title">SHOWTIME MANAGEMENT</div>
+            <div class="nav-buttons">
+                <button class="nav-button home" onclick="window.location.href='/admin';">HOME</button>
+                <form th:action="@{/logout}" method="post" style="display: inline;">
+                    <button type="submit" class="nav-button logout">LOGOUT</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="header">
+                <h1 class="title">Showtimes List</h1>
+                <a th:href="@{/showtimes/add}" class="btn-add">Add New Showtime</a>
+            </div>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Movie ID</th>
+                    <th>Theatre ID</th>
+                    <th>Screen ID</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="showtime : ${showtimes}">
+                    <td th:text="${showtime.showtimeId}"></td>
+                    <td th:text="${showtime.movieId}"></td>
+                    <td th:text="${showtime.theatreId}"></td>
+                    <td th:text="${showtime.screenId}"></td>
+                    <td th:text="${#temporals.format(showtime.date, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${#temporals.format(showtime.time, 'HH:mm')}"></td>
+                    <td>
+                        <a th:href="@{/showtimes/edit/{id}(id=${showtime.showtimeId})}" class="action-btn btn-edit">Edit</a>
+                        <form th:action="@{/showtimes/delete/{id}(id=${showtime.showtimeId})}" method="post" style="display: inline;">
+                            <button type="submit" class="action-btn btn-delete">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
