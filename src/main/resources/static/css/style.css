@@ -1,0 +1,551 @@
+.div-wrapper, .overlap-group {
+    transition: box-shadow 0.3s ease;
+}
+
+.div-wrapper:hover, .overlap-group:hover {
+    box-shadow: 0 0 10px rgba(253, 217, 106, 0.8);
+}
+
+.buy {
+    text-decoration: none;
+    color: #040404;
+}
+
+.video{
+    text-decoration: none;
+    color: #f8ce35;
+}
+
+
+.homepage {
+    background-color: rgba(255, 255, 255, 1.0);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.homepage .div {
+    background-color: rgba(255, 255, 255, 1.0);
+    background: linear-gradient(117deg,
+    rgba(37, 37, 43, 0.95) 27%,
+    rgba(62, 61, 74, 1) 62%,
+    rgba(72, 72, 108, 1) 100%);
+    overflow-x: hidden;
+    width: 100%;
+    height: 1192px;
+    position: relative;
+}
+
+.homepage .navbar {
+    position: absolute;
+    width: 1183px;
+    height: 38px;
+    top: 42px;
+    left: 133px;
+}
+
+.homepage .text-wrapper {
+    left: 0;
+    font-family: "Outfit-ExtraBold", Helvetica;
+    font-weight: 800;
+    color: #fff9f9;
+    text-align: center;
+    letter-spacing: 0;
+    position: absolute;
+    top: 0;
+    font-size: 30px;
+    line-height: normal;
+}
+
+.homepage .text-wrapper-2 {
+    width: 100px;
+    left: 598px;
+    font-family: "Outfit-Light", Helvetica;
+    font-weight: 300;
+    color: #f8ce35;
+    text-align: center;
+    letter-spacing: 3.00px;
+    position: absolute;
+    top: 0;
+    font-size: 30px;
+    line-height: normal;
+}
+
+.homepage .text-wrapper-3 {
+    position: absolute;
+    top: 0;
+    left: 768px;
+    font-family: "Outfit-Light", Helvetica;
+    font-weight: 300;
+    color: #ffffff;
+    font-size: 30px;
+    text-align: center;
+    letter-spacing: 3.00px;
+    line-height: normal;
+}
+
+.homepage .text-wrapper-4 {
+    position: absolute;
+    top: 0;
+    left: 950px;
+    font-family: "Outfit-Light", Helvetica;
+    font-weight: 300;
+    color: #ffffff;
+    font-size: 30px;
+    text-align: center;
+    letter-spacing: 3.00px;
+    line-height: normal;
+}
+
+.homepage .now-showing {
+    position: absolute;
+    width: 1378px;
+    height: 454px;
+    top: 160px;
+    left: 133px;
+}
+
+.homepage .text-wrapper-5 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Outfit-Bold", Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 28px;
+    text-align: center;
+    letter-spacing: 2.80px;
+    line-height: normal;
+}
+
+.homepage .group {
+    position: absolute;
+    width: 176px;
+    height: 386px;
+    top: 63px;
+    left: 0;
+}
+
+.homepage .img {
+    position: absolute;
+    width: 175px;
+    height: 263px;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}
+
+.homepage .INFO-BUY-ca {
+    width: 176px;
+    top: 273px;
+    position: absolute;
+    height: 113px;
+    left: 0;
+}
+
+.homepage .title-date-hrs {
+    position: absolute;
+    width: 182px;
+    height: 78px;
+    top: 0;
+    left: 0;
+}
+
+.homepage .text-wrapper-6 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Outfit-Regular", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 18px;
+    letter-spacing: 1.80px;
+    line-height: normal;
+}
+
+.homepage .text-wrapper-7 {
+    position: absolute;
+    top: 58px;
+    left: 0;
+    font-family: "Outfit-Thin", Helvetica;
+    font-weight: 100;
+    color: #ffffff;
+    font-size: 16px;
+    letter-spacing: 1.60px;
+    line-height: normal;
+}
+
+.homepage .text-wrapper-8 {
+    position: absolute;
+    top: 58px;
+    left: 119px;
+    font-family: "Outfit-Thin", Helvetica;
+    font-weight: 100;
+    color: #ffffff;
+    font-size: 16px;
+    letter-spacing: 1.60px;
+    line-height: normal;
+}
+
+.homepage .overlap-group-wrapper {
+    position: absolute;
+    width: 77px;
+    height: 26px;
+    top: 87px;
+    left: 0;
+}
+
+.homepage .overlap-group {
+    position: relative;
+    width: 75px;
+    height: 26px;
+    background-color: #f8ce35;
+    border-radius: 5px;
+}
+
+.homepage .text-wrapper-9 {
+    position: absolute;
+    top: 5px;
+    left: 6px;
+    font-family: "Outfit-Light", Helvetica;
+    font-weight: 300;
+    color: #030303;
+    font-size: 12px;
+    letter-spacing: 1.20px;
+    line-height: normal;
+}
+
+.homepage .trailer {
+    position: absolute;
+    width: 77px;
+    height: 26px;
+    top: 87px;
+    left: 100px;
+}
+
+.homepage .div-wrapper {
+    position: relative;
+    width: 75px;
+    height: 26px;
+    border-radius: 5px;
+    border: 1.5px solid;
+    border-color: #f8ce35;
+}
+
+.homepage .text-wrapper-10 {
+    position: absolute;
+    top: 4px;
+    left: 8px;
+    font-family: "Outfit-Light", Helvetica;
+    font-weight: 300;
+    color: #f8ce35;
+    font-size: 12px;
+    letter-spacing: 1.20px;
+    line-height: normal;
+}
+
+.homepage .group-2 {
+    position: absolute;
+    width: 176px;
+    height: 386px;
+    top: 63px;
+    left: 200px;
+}
+
+.homepage .INFO-BUY {
+    width: 176px;
+    top: 273px;
+    position: absolute;
+    height: 113px;
+    left: 0;
+}
+
+.homepage .group-3 {
+    position: absolute;
+    width: 176px;
+    height: 386px;
+    top: 63px;
+    left: 400px;
+}
+
+.homepage .div-2 {
+    position: absolute;
+    width: 176px;
+    height: 113px;
+    top: 273px;
+    left: 0;
+}
+
+.homepage .group-4 {
+    position: absolute;
+    width: 176px;
+    height: 386px;
+    top: 63px;
+    left: 600px;
+}
+
+.homepage .group-5 {
+    position: absolute;
+    width: 176px;
+    height: 386px;
+    top: 63px;
+    left: 800px;
+}
+
+.homepage .INFO-BUY-kasiwasi {
+    width: 176px;
+    top: 273px;
+    position: absolute;
+    height: 113px;
+    left: 0;
+}
+
+.homepage .group-6 {
+    position: absolute;
+    width: 176px;
+    height: 386px;
+    top: 63px;
+    left: 1000px;
+}
+
+.homepage .INFO-BUY-icecream {
+    width: 176px;
+    top: 273px;
+    position: absolute;
+    height: 113px;
+    left: 0;
+}
+
+.homepage .element {
+    position: absolute;
+    width: 175px;
+    height: 262px;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}
+
+.homepage .group-7 {
+    position: absolute;
+    width: 176px;
+    height: 386px;
+    top: 62px;
+    left: 1200px;
+}
+
+.homepage .INFO-BUY-novocaine {
+    width: 176px;
+    top: 273px;
+    position: absolute;
+    height: 113px;
+    left: 0;
+}
+
+.homepage .coming-soon {
+    position: absolute;
+    width: 1377px;
+    height: 454px;
+    top: 677px;
+    left: 133px;
+}
+
+.homepage .text-wrapper-11 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Outfit-Bold", Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: 2.80px;
+    line-height: normal;
+}
+
+.homepage .group-8 {
+    position: absolute;
+    width: 175px;
+    height: 387px;
+    top: 63px;
+    left: 0;
+}
+
+.homepage .INFO-BUY-ca-2 {
+    position: absolute;
+    width: 109px;
+    height: 114px;
+    top: 273px;
+    left: 0;
+}
+
+.homepage .title-date-hrs-2 {
+    width: 113px;
+    position: absolute;
+    height: 78px;
+    top: 0;
+    left: 0;
+}
+
+.homepage .trailer-2 {
+    position: absolute;
+    width: 77px;
+    height: 26px;
+    top: 88px;
+    left: 0;
+}
+
+.homepage .group-9 {
+    position: absolute;
+    width: 175px;
+    height: 387px;
+    top: 63px;
+    left: 200px;
+}
+
+.homepage .INFO-BUY-m {
+    position: absolute;
+    width: 95px;
+    height: 114px;
+    top: 273px;
+    left: 0;
+}
+
+.homepage .title-date-hrs-3 {
+    width: 99px;
+    position: absolute;
+    height: 78px;
+    top: 0;
+    left: 0;
+}
+
+.homepage .group-10 {
+    position: absolute;
+    width: 175px;
+    height: 389px;
+    top: 63px;
+    left: 400px;
+}
+
+.homepage .INFO-BUY-rani {
+    width: 169px;
+    top: 273px;
+    position: absolute;
+    height: 114px;
+    left: 0;
+}
+
+.homepage .title-date-hrs-4 {
+    width: 173px;
+    position: absolute;
+    height: 78px;
+    top: 0;
+    left: 0;
+}
+
+.homepage .group-11 {
+    position: absolute;
+    width: 175px;
+    height: 389px;
+    top: 63px;
+    left: 600px;
+}
+
+.homepage .INFO-BUY-moana {
+    width: 171px;
+    top: 273px;
+    position: absolute;
+    height: 114px;
+    left: 0;
+}
+
+.homepage .title-date-hrs-5 {
+    width: 175px;
+    position: absolute;
+    height: 78px;
+    top: 0;
+    left: 0;
+}
+
+.homepage .mission-impossible {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Outfit-Regular", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 16px;
+    letter-spacing: 1.60px;
+    line-height: normal;
+}
+
+.homepage .group-12 {
+    position: absolute;
+    width: 175px;
+    height: 390px;
+    top: 63px;
+    left: 800px;
+}
+
+.homepage .INFO-BUY-kasiwasi-2 {
+    position: absolute;
+    width: 75px;
+    height: 114px;
+    top: 273px;
+    left: 0;
+}
+
+.homepage .title-date-hrs-6 {
+    width: 45px;
+    position: absolute;
+    height: 78px;
+    top: 0;
+    left: 0;
+}
+
+.homepage .group-13 {
+    position: absolute;
+    width: 175px;
+    height: 391px;
+    top: 63px;
+    left: 1000px;
+}
+
+.homepage .INFO-BUY-icecream-2 {
+    position: absolute;
+    width: 145px;
+    height: 114px;
+    top: 273px;
+    left: 0;
+}
+
+.homepage .title-date-hrs-7 {
+    width: 149px;
+    position: absolute;
+    height: 78px;
+    top: 0;
+    left: 0;
+}
+
+.homepage .group-14 {
+    position: absolute;
+    width: 175px;
+    height: 392px;
+    top: 62px;
+    left: 1200px;
+}
+
+.homepage .INFO-BUY-novocaine-2 {
+    position: absolute;
+    width: 111px;
+    height: 114px;
+    top: 273px;
+    left: 0;
+}
+
+.homepage .title-date-hrs-8 {
+    width: 115px;
+    position: absolute;
+    height: 78px;
+    top: 0;
+    left: 0;
+}
