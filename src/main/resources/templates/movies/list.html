@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/css/globals.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <style>
+        button {
+            all: unset;
+            transition: box-shadow 0.3s ease;
+        }
+        .navbar button:hover {
+            color: gold;
+        }
+
+        .button:hover {
+            background-color: gold;
+            color: black;
+            box-shadow: 0 0 20px rgba(253, 217, 106, 0.8);
+        }
+
+        /* Fixed movie container styles */
+        .movie-scroll-container {
+            position: relative;
+            width: 1250px;
+            height: 454px;
+            padding: 0 0px
+            overflow: hidden;
+        }
+
+        .movie-viewport {
+            width: 100%;
+            height: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            padding-top: 63px; /* Match your design */
+        }
+
+        .movie-viewport::-webkit-scrollbar {
+            display: none;
+        }
+
+        .movie-list {
+            display: inline-flex;
+            gap: 24px; /* Space between movies */
+            padding: 0 0px;
+            height: 100%;
+        }
+
+        /* Movie card - matches your exact dimensions */
+        .movie-card {
+            position: relative;
+            width: 176px;
+            height: 386px;
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+
+        .movie-poster {
+            position: absolute;
+            width: 175px;
+            height: 263px;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+        }
+
+        .movie-info {
+            position: absolute;
+            width: 176px;
+            height: 113px;
+            top: 273px;
+            left: 0;
+        }
+
+        .movie-title {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-family: "Outfit-Regular", Helvetica;
+            font-weight: 400;
+            color: #ffffff;
+            font-size: 18px;
+            letter-spacing: 1.80px;
+        }
+
+        .movie-year {
+            position: absolute;
+            top: 58px;
+            left: 0;
+            font-family: "Outfit-Thin", Helvetica;
+            font-weight: 100;
+            color: #ffffff;
+            font-size: 16px;
+            letter-spacing: 1.60px;
+        }
+
+        .movie-duration {
+            position: absolute;
+            top: 58px;
+            left: 119px;
+            font-family: "Outfit-Thin", Helvetica;
+            font-weight: 100;
+            color: #ffffff;
+            font-size: 16px;
+            letter-spacing: 1.60px;
+        }
+
+        .movie-actions {
+            position: absolute;
+            top: 87px;
+            left: 0;
+            width: 176px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .buy-btn, .trailer-btn {
+            position: relative;
+            height: 26px;
+            font-family: "Outfit-Light", Helvetica;
+            font-weight: 300;
+            font-size: 12px;
+            letter-spacing: 1.20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .buy-btn {
+            width: 75px;
+            background-color: #f8ce35;
+            color: #030303;
+            border-radius: 5px;
+        }
+
+        .trailer-btn {
+            width: 75px;
+            border: 1.5px solid #f8ce35;
+            border-radius: 5px;
+            color: #f8ce35;
+        }
+
+        /* Scroll buttons */
+        .scroll-btn {
+            position: absolute;
+            font-family: "Outfit-Bold", Helvetica;
+            font-size: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .scroll-btn.left {
+            left: 10px;
+        }
+
+        .scroll-btn.right {
+            right: 10px;
+        }
+
+        .scroll-btn:hover {
+            background-color: #f8ce35;
+            color: black;
+        }
+
+        /* Admin button in bottom right corner */
+        .admin-button {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            background-color: #f8ce35;
+            color: #030303;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .admin-button:hover {
+            background-color: gold;
+            box-shadow: 0 0 20px rgba(253, 217, 106, 0.8);
+            transform: scale(1.1);
+        }
+
+        .admin-button::after {
+            content: "ADMIN";
+            position: absolute;
+            white-space: nowrap;
+            right: 70px;
+            font-family: "Outfit-Light", Helvetica;
+            font-size: 16px;
+            background: rgba(0,0,0,0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .admin-button:hover::after {
+            opacity: 1;
+        }
+    </style>
+    <script>
+        function handleBuyNow(button) {
+            const movieId = button.getAttribute('data-movie-id');
+            window.location.href = '/bookings/select-showtime?movieId=' + movieId;
+        }
+
+        function scrollSection(section, direction) {
+            const viewport = document.querySelector(`.${section} .movie-viewport`);
+            const scrollAmount = viewport.offsetWidth * 0.8;
+            viewport.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide scroll buttons when at ends
+            const checkScrollButtons = () => {
+                document.querySelectorAll('.movie-viewport').forEach(viewport => {
+                    const container = viewport.closest('.movie-scroll-container');
+                    const leftBtn = container.querySelector('.scroll-btn.left');
+                    const rightBtn = container.querySelector('.scroll-btn.right');
+
+                    leftBtn.style.display = viewport.scrollLeft <= 10 ? 'none' : 'block';
+                    rightBtn.style.display = viewport.scrollLeft >= (viewport.scrollWidth - viewport.clientWidth - 10) ? 'none' : 'block';
+                });
+            };
+
+            checkScrollButtons();
+            document.querySelectorAll('.movie-viewport').forEach(el => {
+                el.addEventListener('scroll', checkScrollButtons);
+            });
+        });
+    </script>
+</head>
+
+<body>
+<div class="homepage">
+    <div class="div">
+        <div class="navbar">
+            <div class="text-wrapper">MOVIES</div>
+        </div>
+
+        <div class="now-showing">
+            <div class="text-wrapper-5">Now Showing</div>
+
+            <div class="movie-scroll-container">
+                <button class="scroll-btn left" onclick="scrollSection('now-showing', -1)">&#9665; Prev</button>
+
+                <div class="movie-viewport">
+                    <div class="movie-list">
+                        <div th:each="movie : ${movies}" class="movie-card">
+                            <img class="movie-poster" th:src="@{'/uploads/images/' + ${movie.imageName}}" th:alt="${movie.title}">
+                            <div class="movie-info">
+                                <div class="movie-title" th:text="${movie.title}">Movie Title</div>
+                                <div class="movie-year" th:text="${#temporals.format(movie.releaseDate, 'yyyy')}">2025</div>
+                                <div class="movie-duration" th:text="${movie.duration + 'm'}">1h 58m</div>
+                                <div class="movie-actions">
+                                    <button class="buy-btn" th:data-movie-id="${movie.movieId}" onclick="handleBuyNow(this)">BUY NOW</button>
+                                    <button class="trailer-btn" onclick="window.location.href='404.html';">TRAILER</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="scroll-btn right" onclick="scrollSection('now-showing', 1)">Next &#9655;</button>
+            </div>
+        </div>
+
+        <!-- Coming Soon Section -->
+        <div class="coming-soon">
+            <div class="text-wrapper-11">Coming Soon</div>
+
+            <div class="movie-scroll-container">
+                <button class="scroll-btn left" onclick="scrollSection('coming-soon', -1)">&#9665; Prev</button>
+
+                <div class="movie-viewport">
+                    <div class="movie-list">
+                        <div th:each="movie : ${comingSoonMovies}" class="movie-card">
+                            <img class="movie-poster" th:src="@{'/uploads/images/' + ${movie.imageName}}" th:alt="${movie.title}">
+                            <div class="movie-info">
+                                <div class="movie-title" th:text="${movie.title}">Movie Title</div>
+                                <div class="movie-year" th:text="${#temporals.format(movie.releaseDate, 'yyyy')}">2025</div>
+                                <div class="movie-actions">
+                                    <button class="trailer-btn" onclick="window.location.href='404.html';">TRAILER</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="scroll-btn right" onclick="scrollSection('coming-soon', 1)">Next &#9655;</button>
+            </div>
+        </div>
+
+        <!-- Admin Button in Bottom Right Corner -->
+        <a href="/admin" class="admin-button">⚙️</a>
+    </div>
+</div>
+</body>
+</html>
