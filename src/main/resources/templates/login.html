@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/globals.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <style>
+        /* Base styles matching your movie page */
+        .homepage {
+            background-color: rgba(255, 255, 255, 1.0);
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .homepage .div {
+            background-color: rgba(255, 255, 255, 1.0);
+            background: linear-gradient(117deg,
+            rgba(37, 37, 43, 0.95) 27%,
+            rgba(62, 61, 74, 1) 62%,
+            rgba(72, 72, 108, 1) 100%);
+            width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Login Container */
+        .login-container {
+            width: 400px;
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(248, 206, 53, 0.2);
+        }
+
+        .login-title {
+            font-family: "Outfit-Bold", Helvetica;
+            font-weight: 700;
+            color: #f8ce35;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+
+        /* Form Styles */
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-family: "Outfit-Light", Helvetica;
+            font-weight: 300;
+            color: #f8ce35;
+            font-size: 18px;
+        }
+
+        .form-group input {
+            padding: 12px 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            color: white;
+            font-family: "Outfit-Light", Helvetica;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #f8ce35;
+            box-shadow: 0 0 10px rgba(248, 206, 53, 0.5);
+        }
+
+        .login-button {
+            background-color: #f8ce35;
+            color: black;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            font-family: "Outfit-Light", Helvetica;
+            font-weight: 300;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-button:hover {
+            background-color: gold;
+            box-shadow: 0 0 20px rgba(253, 217, 106, 0.8);
+        }
+
+        /* Messages */
+        .error-message {
+            color: #ff4d4d;
+            font-family: "Outfit-Light", Helvetica;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .logout-message {
+            color: #4dff4d;
+            font-family: "Outfit-Light", Helvetica;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Navbar for consistency (hidden on login) */
+        .navbar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .navbar-title {
+            font-family: "Outfit-ExtraBold", Helvetica;
+            font-weight: 800;
+            color: #fff9f9;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="homepage">
+    <div class="div">
+        <!-- Simple navbar for branding -->
+        <div class="navbar">
+            <div class="navbar-title">MOVIE BOOKING SYSTEM</div>
+        </div>
+
+        <!-- Login Container -->
+        <div class="login-container">
+            <h2 class="login-title">LOGIN</h2>
+
+            <form th:action="@{/login}" method="post" class="login-form">
+                <div class="form-group">
+                    <label for="username">Email</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <button type="submit" class="login-button">LOGIN</button>
+            </form>
+
+            <div th:if="${param.error}" class="error-message">
+                <p>Invalid credentials. Please try again.</p>
+            </div>
+
+            <div th:if="${param.logout}" class="logout-message">
+                <p>You have been logged out.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

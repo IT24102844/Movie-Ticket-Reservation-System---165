@@ -344,7 +344,7 @@
                 </div>
             </div>
 
-            <form th:action="@{/bookings/confirm}" method="post" id="booking-form">
+            <form th:action="@{/templates/bookings/confirm}" method="post" id="booking-form">
                 <!-- Hidden Fields -->
                 <input type="hidden" name="movieId" th:value="${movie?.movieId}">
                 <input type="hidden" name="theaterId" th:value="${theater?.theatreId}">
