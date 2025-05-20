@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/globals.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <style>
+        /* Exact match with movie page styles */
+        .homepage {
+            background-color: rgba(255, 255, 255, 1.0);
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .homepage .div {
+            background-color: rgba(255, 255, 255, 1.0);
+            background: linear-gradient(117deg,
+            rgba(37, 37, 43, 0.95) 27%,
+            rgba(62, 61, 74, 1) 62%,
+            rgba(72, 72, 108, 1) 100%);
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Updated Navbar with right-aligned buttons */
+        .navbar {
+            position: absolute;
+            width: 1183px;
+            height: 38px;
+            top: 42px;
+            left: 133px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-title {
+            font-family: "Outfit-ExtraBold", Helvetica;
+            font-weight: 800;
+            color: #fff9f9;
+            font-size: 30px;
+            line-height: normal;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-button {
+            all: unset;
+            font-family: "Outfit-Light", Helvetica;
+            font-weight: 300;
+            font-size: 30px;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .nav-button.home {
+            color: #f8ce35;
+        }
+
+        .nav-button.logout {
+            color: #ffffff;
+        }
+
+        .nav-button:hover {
+            color: gold;
+        }
+
+        /* Centered Dashboard Content */
+        .dashboard-content {
+            position: absolute;
+            width: 1183px;
+            top: 160px;
+            left: 133px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section-title {
+            font-family: "Outfit-Bold", Helvetica;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 28px;
+            letter-spacing: 2.80px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            max-width: 1200px;
+        }
+
+        .card {
+            width: 380px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(253, 217, 106, 0.1);
+        }
+
+        .card h3 {
+            font-family: "Outfit-Bold", Helvetica;
+            font-weight: 700;
+            color: #f8ce35;
+            font-size: 22px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .card a {
+            display: block;
+            padding: 10px 20px;
+            background-color: #f8ce35;
+            color: #030303;
+            border-radius: 5px;
+            font-family: "Outfit-Light", Helvetica;
+            font-weight: 300;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .card a:hover {
+            background-color: gold;
+            box-shadow: 0 0 20px rgba(253, 217, 106, 0.8);
+        }
+    </style>
+</head>
+<body>
+<div class="homepage">
+    <div class="div">
+        <!-- Updated Navbar with right-aligned buttons -->
+        <div class="navbar">
+            <div class="navbar-title">ADMIN DASHBOARD</div>
+            <div class="nav-buttons">
+                <button class="nav-button home" onclick="window.location.href='/admin';">HOME</button>
+                <form th:action="@{/logout}" method="post" style="display: inline;">
+                    <button type="submit" class="nav-button logout" onclick="window.location.href='/movies';">LOGOUT</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Centered Dashboard Content -->
+        <div class="dashboard-content">
+            <div class="section-title">Management Console</div>
+
+            <div class="card-container">
+                <div class="card">
+                    <h3>Movie Management</h3>
+                    <a th:href="@{/admin/manage-movies}">MANAGE MOVIES</a>
+                </div>
+
+                <div class="card">
+                    <h3>Theatre Management</h3>
+                    <a th:href="@{/theatres}">MANAGE THEATRES</a>
+                </div>
+
+                <div class="card">
+                    <h3>Screen Management</h3>
+                    <a th:href="@{/screens}">MANAGE SCREENS</a>
+                </div>
+
+                <div class="card">
+                    <h3>Showtime Management</h3>
+                    <a th:href="@{/showtimes}">MANAGE SHOWTIMES</a>
+                </div>
+
+                <div class="card">
+                    <h3>Booking Records</h3>
+                    <a th:href="@{/admin/manage-bookings}">VIEW BOOKINGS</a>
+                </div>
+
+                <div class="card">
+                    <h3>Payment Records</h3>
+                    <a th:href="@{/admin/manage-payments}">VIEW PAYMENTS</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Movies</title>
+    <link rel="stylesheet" th:href="@{/css/globals.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <style>
+        /* Base styles matching your movie page */
+        .homepage {
+            background-color: rgba(255, 255, 255, 1.0);
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .homepage .div {
+            background-color: rgba(255, 255, 255, 1.0);
+            background: linear-gradient(117deg,
+            rgba(37, 37, 43, 0.95) 27%,
+            rgba(62, 61, 74, 1) 62%,
+            rgba(72, 72, 108, 1) 100%);
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Navbar - identical to your movie page */
+        .navbar {
+            position: absolute;
+            width: 1183px;
+            height: 38px;
+            top: 42px;
+            left: 133px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-title {
+            font-family: "Outfit-ExtraBold", Helvetica;
+            font-weight: 800;
+            color: #fff9f9;
+            font-size: 30px;
+            line-height: normal;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-button {
+            all: unset;
+            font-family: "Outfit-Light", Helvetica;
+            font-weight: 300;
+            font-size: 30px;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .nav-button.home {
+            color: #f8ce35;
+        }
+
+        .nav-button.logout {
+            color: #ffffff;
+        }
+
+        .nav-button:hover {
+            color: gold;
+        }
+
+        /* Management Content */
+        .management-content {
+            position: absolute;
+            width: 1183px;
+            top: 160px;
+            left: 133px;
+            color: white;
+        }
+
+        .section-header {
+            font-family: "Outfit-Bold", Helvetica;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 28px;
+            letter-spacing: 2.80px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .add-movie-btn {
+            padding: 10px 20px;
+            background-color: #f8ce35;
+            color: #030303;
+            border-radius: 5px;
+            font-family: "Outfit-Light", Helvetica;
+            font-weight: 300;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .add-movie-btn:hover {
+            background-color: gold;
+            box-shadow: 0 0 20px rgba(253, 217, 106, 0.8);
+        }
+
+        /* Movie Table */
+        .movie-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .movie-table th {
+            font-family: "Outfit-Bold", Helvetica;
+            font-weight: 700;
+            color: #f8ce35;
+            text-align: left;
+            padding: 15px;
+            border-bottom: 1px solid rgba(253, 217, 106, 0.3);
+        }
+
+        .movie-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: "Outfit-Light", Helvetica;
+            font-weight: 300;
+        }
+
+        .movie-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .movie-table tr:hover {
+            background: rgba(253, 217, 106, 0.1);
+        }
+
+        .action-btn {
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-family: "Outfit-Light", Helvetica;
+            font-weight: 300;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .edit-btn {
+            background-color: #f8ce35;
+            color: #030303;
+        }
+
+        .delete-btn {
+            background-color: transparent;
+            border: 1px solid #ff4d4d;
+            color: #ff4d4d;
+        }
+
+        .edit-btn:hover {
+            background-color: gold;
+            box-shadow: 0 0 20px rgba(253, 217, 106, 0.5);
+        }
+
+        .delete-btn:hover {
+            background-color: rgba(255, 77, 77, 0.2);
+        }
+
+        .movie-poster {
+            width: 60px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="homepage">
+    <div class="div">
+        <!-- Navbar matching your movie page -->
+        <div class="navbar">
+            <div class="navbar-title">MOVIE MANAGEMENT</div>
+            <div class="nav-buttons">
+                <button class="nav-button home" onclick="window.location.href='/admin';">HOME</button>
+                <form th:action="@{/logout}" method="post" style="display: inline;">
+                    <button type="submit" class="nav-button logout" onclick="window.location.href='/movies';">LOGOUT</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Management Content -->
+        <div class="management-content">
+            <div class="section-header">
+                <span>All Movies</span>
+                <a th:href="@{/movies/add}" class="add-movie-btn">+ ADD NEW MOVIE</a>
+            </div>
+
+            <table class="movie-table">
+                <thead>
+                <tr>
+                    <th>Poster</th>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Release Date</th>
+                    <th>Duration</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="movie : ${movies}">
+                    <td>
+                        <img th:src="@{'/uploads/images/' + ${movie.imageName}}"
+                             alt="Movie poster" class="movie-poster">
+                    </td>
+                    <td th:text="${movie.title}"></td>
+                    <td th:text="${movie.genre}"></td>
+                    <td th:text="${#temporals.format(movie.releaseDate, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${movie.duration + 'm'}"></td>
+                    <td>
+                        <a th:href="@{'/movies/edit/' + ${movie.movieId}}" class="action-btn edit-btn">EDIT</a>
+                        <form th:action="@{'/movies/delete/' + ${movie.movieId}}" method="post" style="display: inline;">
+                            <button type="submit" class="action-btn delete-btn"
+                                    onclick="return confirm('Are you sure you want to delete this movie?')">
+                                DELETE
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
